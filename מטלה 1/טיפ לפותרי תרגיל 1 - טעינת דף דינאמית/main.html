@@ -1,0 +1,31 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button#btn_load_templateA").click(function(){
+	$( "#result" ).load( "./templateA.html" );
+  });
+
+  $("button#btn_load_templateB").click(function(){
+	$( "#result" ).load( "./templateB.html" );
+  });
+
+ 
+  $("button#btn_modify_template").click(function(){
+	$( "#line1" ).html("this line belongs to the template. MODIFIED at "+Date());
+  });
+})
+</script>
+</head>
+
+<body>
+<h2>Test</h2>
+<div id=result>Press on the button to load content from template.html <br> Make sure you closed all Chrome.exe open windows before running this</div>
+<button id="btn_load_templateA" type="button"><b>load</b> template A</button>
+<button id="btn_load_templateB" type="button"><b>load</b> template B</button>
+<button id="btn_modify_template" type="button">Click me to <b>modify</b> line1 from template</button>
+</body>
+
+</html>
+
