@@ -22,20 +22,30 @@
       {
         id: 1,
         type: "small",
-        message: ["IPHONE X is the best", ":)"],
+        title: "IPHONE X",
+        subtitle: "treat yourself with the best",
+        message: [
+          "IPHONE X is the best!",
+          "SPEED, CAMERA AND CONVINIENCE",
+          ":)",
+        ],
         img: [
-          "https://www.google.com/aclk?sa=l&ai=DChcSEwj3-YS17Pr2AhVvjWgJHXamDHIYABADGgJ3Zg&sig=AOD64_21iQ5CXYmqTxezr0B3btjYafUQhQ&adurl&ctype=5&ved=2ahUKEwjDzfO07Pr2AhWq6uAKHb-jAHwQvhd6BAgBEE0",
-          "https://www.google.com/aclk?sa=l&ai=DChcSEwj3-YS17Pr2AhVvjWgJHXamDHIYABAJGgJ3Zg&sig=AOD64_1vdqrd6rwwJn2AKpKb_ZA6QMPQhw&adurl&ctype=5&ved=2ahUKEwjDzfO07Pr2AhWq6uAKHb-jAHwQvhd6BAgBEF0",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lm14j1aFtlT3Gjv9SSpybhtvN695XsSNIA&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfnHHKAETeAJU_9_6wEIF-3eVr40CYh2j1mA&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBkIFXmUMxK44ZOT2t7NE0YOE3z_TO9gztXQ&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3gsU-6BJau1nx_q18ygEXijsNN3D8EX6Ng&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT01PPbf3eScTaKUs8QLtie5WbVOcLH38edxA&usqp=CAU",
         ],
         isShabat: false,
-        template: "A",
+        template: "a",
         ttl: 3000,
-        timeFrame: function () {},
+        dates: [],
       },
       {
         id: 2,
         type: "medium",
+        title: "PIZZA",
+        subtitle: "best you'll ever eat",
         message: [
           "OUR BEST ITALIAN PIZZA",
           "DELIEVERY ALL AROUND THE CLOCK JUST CALL *2338",
@@ -45,13 +55,15 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3zPwiD1uXen7dE7XVFs1j7wsJozC85nCW1Q&usqp=CAU",
         ],
         isShabat: true,
-        template: "B",
+        template: "b",
         ttl: 3000,
-        timeFrame: function () {},
+        dates: [],
       },
       {
         id: 3,
         type: "large",
+        title: "FASHION CLOTHES",
+        subtitle: "best quality and style",
         message: [
           "MOST TREDY FASHIONABLE CLOTHES",
           "END OF SEASON SALE",
@@ -64,13 +76,15 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5iDH51DsoiKniHE78gKQSNX06YQOK_dNrvQ&usqp=CAU",
         ],
         isShabat: true,
-        template: "C",
+        template: "c",
         ttl: 3000,
-        timeFrame: function () {},
+        dates: [],
       },
       {
         id: 3,
         type: "small",
+        title: "TRAVEL GUIDES",
+        subtitle: "professional with years of experience",
         message: [
           "TRAVEL WITH US",
           "BEST OFFERS AND DEALS",
@@ -86,15 +100,17 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8dnToWjhdzoNh7EoF9CbfkXhzNQaCFOhyg&usqp=CAU",
         ],
         isShabat: true,
-        template: "C",
+        template: "b",
         ttl: 3000,
-        timeFrame: function () {},
+        dates: [],
       },
       {
         id: 3,
         type: "large",
+        title: "HEAD AND SHOULDERS",
+        subtitle: "voted #1 on hair products",
         message: [
-          "HEAD AND SHOULDERS",
+          "HEAD AND SHOULDERS FOR ALL HAIR TYPES",
           "WASH YOUR HAIR WITH THE BEST",
           "NOW ON STORES",
           "ON SALE FOR 24H",
@@ -103,9 +119,9 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eyqUv0Ey-dplxLl7dzh36MPZdLEBFGH0mg&usqp=CAU",
         ],
         isShabat: true,
-        template: "C",
+        template: "a",
         ttl: 3000,
-        timeFrame: function () {},
+        dates: [],
       },
     ];
 
@@ -124,9 +140,16 @@
     });
 
     $(document).ready(function () {
-      $("#result").load("./a.html");
-      //$("#title")[0].outerText = ads[currentAd].message[0];
-      console.log();
+      const template = "./" + ads[currentAd].template + ".html";
+      $("#result").load(template, function () {
+        $("#title").html(ads[currentAd].title);
+        $("#subtitle").html(ads[currentAd].subtitle);
+        $("#text").html(ads[currentAd].message.join("<p></p>"));
+        ads[currentAd].img.forEach(function (image, i) {
+          const currImg = "#image-" + (i + 1);
+          $(currImg).attr("src", image);
+        });
+      });
     });
   </script>
 </html>
