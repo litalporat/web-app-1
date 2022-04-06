@@ -48,11 +48,13 @@
         subtitle: "best you'll ever eat",
         message: [
           "OUR BEST ITALIAN PIZZA",
-          "DELIEVERY ALL AROUND THE CLOCK JUST CALL *2338",
+          "DELIEVERY ALL AROUND THE CLOCK",
+          "JUST CALL *2338",
         ],
         img: [
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvEkpcYeFIB73iycwLEMGx8_BBd5fVqDuZXA&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3zPwiD1uXen7dE7XVFs1j7wsJozC85nCW1Q&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwuK8CzlD2aK-HVxmwFLaSNyF3YmOL3jN3Cw&usqp=CAU",
         ],
         isShabat: true,
         template: "b",
@@ -74,9 +76,10 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3h7Srl3VH6UKcZilNaqd8CDszPz3BFm7cKA&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfoTNUAr8EblvyTYt5KUfuCJIJwHS6MWtQHw&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5iDH51DsoiKniHE78gKQSNX06YQOK_dNrvQ&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV-aM7fdhAmOSMUSf2eoZp24ua0cKxsUuahg&usqp=CAU",
         ],
         isShabat: true,
-        template: "c",
+        template: "a",
         ttl: 3000,
         dates: [],
       },
@@ -119,7 +122,7 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eyqUv0Ey-dplxLl7dzh36MPZdLEBFGH0mg&usqp=CAU",
         ],
         isShabat: true,
-        template: "a",
+        template: "c",
         ttl: 3000,
         dates: [],
       },
@@ -137,19 +140,35 @@
       //next ad
       currentAd++;
       currentAd = currentAd % ads.length;
+      appendAd();
     });
 
-    $(document).ready(function () {
+    const appendAd = function () {
       const template = "./" + ads[currentAd].template + ".html";
+
       $("#result").load(template, function () {
         $("#title").html(ads[currentAd].title);
         $("#subtitle").html(ads[currentAd].subtitle);
-        $("#text").html(ads[currentAd].message.join("<p></p>"));
+
+        if (ads[currentAd].template == "b") {
+          $("#text").html(ads[currentAd].message[0] + "<p></p>");
+          $("#title2").html(ads[currentAd].title);
+          $("#subtitle2").html(ads[currentAd].subtitle);
+          $("#text2").html(ads[currentAd].message[1] + "<p></p>");
+          $("#title3").html(ads[currentAd].title);
+          $("#subtitle3").html(ads[currentAd].subtitle);
+          $("#text3").html(ads[currentAd].message[2] + "<p></p>");
+        } else {
+          $("#text").html(ads[currentAd].message.join("<p></p>"));
+        }
+
         ads[currentAd].img.forEach(function (image, i) {
           const currImg = "#image-" + (i + 1);
           $(currImg).attr("src", image);
         });
       });
-    });
+    };
+
+    $(document).ready(appendAd);
   </script>
 </html>
