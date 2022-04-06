@@ -12,12 +12,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
-    <h1 id="header">header</h1>
-    <div id="messages">messages</div>
-    <div id="images">images</div>
+    <h1 id="result">result</h1>
     <button id="btn_load_next" type="button">Next ad</button>
   </body>
-  <script>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript">
     const ads = [
       {
         id: 1,
@@ -123,7 +122,6 @@
       currentAd = currentAd % ads.length;
     });
 
-    //trying adding ads
-    $("#header").text(ads[currentAd].message[0]);
+    $("button").click(() => $("#result").html("./a.html"));
   </script>
 </html>
