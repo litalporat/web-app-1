@@ -14,7 +14,13 @@
   </head>
   <body>
     <h1 id="result">result</h1>
-    <button id="btn_load_next" type="button">Next ad</button>
+    <button
+      id="btn_load_next"
+      type="button"
+      class="btn btn-outline-primary center"
+    >
+      >Next ad
+    </button>
   </body>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript">
@@ -129,7 +135,7 @@
     ];
 
     let currentAd = 0;
-
+    let changeOnTime;
     //returns t/f if ad is in date
     const timeFrame = function (from, to) {
       if (from > Date.now && to < Date.now) return true;
@@ -138,10 +144,15 @@
 
     $("#btn_load_next").click(function () {
       //next ad
-      currentAd++;
-      currentAd = currentAd % ads.length;
+      clearTimeout(changeOnTime);
+      nextAd();
       appendAd();
     });
+
+    const nextAd = function () {
+      currentAd++;
+      currentAd = currentAd % ads.length;
+    };
 
     const appendAd = function () {
       const template = "./" + ads[currentAd].template + ".html";
@@ -167,6 +178,12 @@
           $(currImg).attr("src", image);
         });
       });
+
+      changeOnTime = setTimeout(function () {
+        console.log("in time out");
+        nextAd();
+        appendAd();
+      }, ads[currentAd].ttl);
     };
 
     $(document).ready(appendAd);
