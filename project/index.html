@@ -42,10 +42,9 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3gsU-6BJau1nx_q18ygEXijsNN3D8EX6Ng&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT01PPbf3eScTaKUs8QLtie5WbVOcLH38edxA&usqp=CAU",
         ],
-        isShabat: false,
         template: "a",
         ttl: 3000,
-        dates: [],
+        dates: [new Date("2022-04-04"), new Date("2022-04-15")],
       },
       {
         id: 2,
@@ -62,10 +61,9 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3zPwiD1uXen7dE7XVFs1j7wsJozC85nCW1Q&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwuK8CzlD2aK-HVxmwFLaSNyF3YmOL3jN3Cw&usqp=CAU",
         ],
-        isShabat: true,
         template: "b",
-        ttl: 3000,
-        dates: [],
+        ttl: 5000,
+        dates: [new Date("2022-04-01"), new Date("2022-04-30")],
       },
       {
         id: 3,
@@ -84,10 +82,9 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5iDH51DsoiKniHE78gKQSNX06YQOK_dNrvQ&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV-aM7fdhAmOSMUSf2eoZp24ua0cKxsUuahg&usqp=CAU",
         ],
-        isShabat: true,
         template: "a",
-        ttl: 3000,
-        dates: [],
+        ttl: 4000,
+        dates: [new Date("2022-03-16"), new Date("2022-04-20")],
       },
       {
         id: 3,
@@ -108,10 +105,9 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSqgtKElpRJtMg9G6MjoDIGjMq0xxBArtrQ&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8dnToWjhdzoNh7EoF9CbfkXhzNQaCFOhyg&usqp=CAU",
         ],
-        isShabat: true,
         template: "b",
         ttl: 3000,
-        dates: [],
+        dates: [new Date("2022-04-06"), new Date("2022-04-29")],
       },
       {
         id: 3,
@@ -127,21 +123,22 @@
         img: [
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eyqUv0Ey-dplxLl7dzh36MPZdLEBFGH0mg&usqp=CAU",
         ],
-        isShabat: true,
         template: "c",
         ttl: 3000,
-        dates: [],
+        dates: [new Date("2022-04-02"), new Date("2022-04-18")],
       },
     ];
 
     let currentAd = 0;
     let changeOnTime;
+
     //returns t/f if ad is in date
     const timeFrame = function (from, to) {
-      if (from > Date.now && to < Date.now) return true;
+      if (from <= Date.now() && to >= Date.now()) return true;
       return false;
     };
 
+    //handle button click
     $("#btn_load_next").click(function () {
       //next ad
       clearTimeout(changeOnTime);
@@ -149,11 +146,15 @@
       appendAd();
     });
 
+    //switch the current ad to next ad
     const nextAd = function () {
-      currentAd++;
-      currentAd = currentAd % ads.length;
+      do {
+        currentAd++;
+        currentAd = currentAd % ads.length;
+      } while (!timeFrame(ads[currentAd].dates[0], ads[currentAd].dates[1]));
     };
 
+    //shows on screen
     const appendAd = function () {
       const template = "./" + ads[currentAd].template + ".html";
 
@@ -186,6 +187,7 @@
       }, ads[currentAd].ttl);
     };
 
+    //the first ad to show
     $(document).ready(appendAd);
   </script>
 </html>
