@@ -13,21 +13,21 @@
     <script type="text/javascript" src="jquery.js"></script>
   </head>
   <body>
-    <h1 id="result">result</h1>
     <button
       id="btn_load_next"
       type="button"
-      class="btn btn-outline-primary center"
+      class="btn btn-outline-primary d-flex justify-content-center"
     >
-      >Next ad
+      Next ad
     </button>
+
+    <h1 id="result">result</h1>
   </body>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript">
     const ads = [
       {
         id: 1,
-        type: "small",
         title: "IPHONE X",
         subtitle: "treat yourself with the best",
         message: [
@@ -44,11 +44,14 @@
         ],
         template: "a",
         ttl: 3000,
-        dates: [new Date("2022-04-04"), new Date("2022-04-15")],
+        dates: {
+          range: [new Date("2022-04-04"), new Date("2022-05-23")],
+          days: [0, 1, 3, 4, 6],
+          hours: [6, 16],
+        },
       },
       {
         id: 2,
-        type: "medium",
         title: "PIZZA",
         subtitle: "best you'll ever eat",
         message: [
@@ -63,11 +66,14 @@
         ],
         template: "b",
         ttl: 5000,
-        dates: [new Date("2022-04-01"), new Date("2022-04-30")],
+        dates: {
+          range: [new Date("2022-04-01"), new Date("2022-04-30")],
+          days: [0, 1, 2, 3, 4],
+          hours: [1, 23],
+        },
       },
       {
         id: 3,
-        type: "large",
         title: "FASHION CLOTHES",
         subtitle: "best quality and style",
         message: [
@@ -83,12 +89,15 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV-aM7fdhAmOSMUSf2eoZp24ua0cKxsUuahg&usqp=CAU",
         ],
         template: "a",
-        ttl: 4000,
-        dates: [new Date("2022-03-16"), new Date("2022-04-20")],
+        ttl: 3000,
+        dates: {
+          range: [new Date("2022-03-16"), new Date("2022-05-01")],
+          days: [0, 1, 2, 5, 6],
+          hours: [2, 20],
+        },
       },
       {
         id: 3,
-        type: "small",
         title: "TRAVEL GUIDES",
         subtitle: "professional with years of experience",
         message: [
@@ -106,12 +115,15 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8dnToWjhdzoNh7EoF9CbfkXhzNQaCFOhyg&usqp=CAU",
         ],
         template: "b",
-        ttl: 3000,
-        dates: [new Date("2022-04-06"), new Date("2022-04-29")],
+        ttl: 4000,
+        dates: {
+          range: [new Date("2022-04-06"), new Date("2022-04-29")],
+          days: [0, 2, 4, 5, 6],
+          hours: [7, 19],
+        },
       },
       {
         id: 3,
-        type: "large",
         title: "HEAD AND SHOULDERS",
         subtitle: "voted #1 on hair products",
         message: [
@@ -124,23 +136,42 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eyqUv0Ey-dplxLl7dzh36MPZdLEBFGH0mg&usqp=CAU",
         ],
         template: "c",
-        ttl: 3000,
-        dates: [new Date("2022-04-02"), new Date("2022-04-18")],
+        ttl: 5000,
+        dates: {
+          range: [new Date("2022-04-02"), new Date("2022-05-18")],
+          days: [1, 2, 3, 4, 5],
+          hours: [15, 23],
+        },
       },
     ];
 
     let currentAd = 0;
     let changeOnTime;
 
-    //returns t/f if ad is in date
-    const timeFrame = function (from, to) {
-      if (from <= Date.now() && to >= Date.now()) return true;
+    //returns t/f if ad in time to show
+    const timeFrame = function (currDates) {
+      const now = new Date();
+      //dates check
+      if (
+        currDates.range[0] <= Date.now() &&
+        currDates.range[1] >= Date.now()
+      ) {
+        //days of the week check
+        if (currDates.days.includes(now.getDay())) {
+          //houes check
+          if (
+            currDates.hours[0] <= now.getHours() &&
+            currDates.hours[1] >= now.getHours()
+          ) {
+            return true;
+          }
+        }
+      }
       return false;
     };
 
     //handle button click
     $("#btn_load_next").click(function () {
-      //next ad
       clearTimeout(changeOnTime);
       nextAd();
       appendAd();
@@ -151,7 +182,7 @@
       do {
         currentAd++;
         currentAd = currentAd % ads.length;
-      } while (!timeFrame(ads[currentAd].dates[0], ads[currentAd].dates[1]));
+      } while (!timeFrame(ads[currentAd].dates));
     };
 
     //shows on screen
@@ -181,7 +212,7 @@
       });
 
       changeOnTime = setTimeout(function () {
-        console.log("in time out");
+        //console.log("in time out");
         nextAd();
         appendAd();
       }, ads[currentAd].ttl);
