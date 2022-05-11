@@ -1,0 +1,125 @@
+const ads = [
+  {
+    id: 1,
+    screenIds: [1, 2],
+    title: "IPHONE X",
+    subtitle: "treat yourself with the best",
+    message: ["IPHONE X is the best!", "SPEED, CAMERA AND CONVINIENCE", ":)"],
+    img: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8lm14j1aFtlT3Gjv9SSpybhtvN695XsSNIA&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfnHHKAETeAJU_9_6wEIF-3eVr40CYh2j1mA&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBkIFXmUMxK44ZOT2t7NE0YOE3z_TO9gztXQ&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3gsU-6BJau1nx_q18ygEXijsNN3D8EX6Ng&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT01PPbf3eScTaKUs8QLtie5WbVOcLH38edxA&usqp=CAU",
+    ],
+    template: "a",
+    ttl: 3000,
+    dates: {
+      range: [new Date("2022-01-01"), new Date("2022-12-30")],
+      daysAndHours: { 1: [6, 12], 3: [13, 20] },
+    },
+  },
+  {
+    id: 2,
+    screenIds: [1, 3],
+    title: "PIZZA",
+    subtitle: "best you'll ever eat",
+    message: [
+      "OUR BEST ITALIAN PIZZA",
+      "DELIEVERY ALL AROUND THE CLOCK",
+      "JUST CALL *2338",
+    ],
+    img: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvEkpcYeFIB73iycwLEMGx8_BBd5fVqDuZXA&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3zPwiD1uXen7dE7XVFs1j7wsJozC85nCW1Q&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwuK8CzlD2aK-HVxmwFLaSNyF3YmOL3jN3Cw&usqp=CAU",
+    ],
+    template: "b",
+    ttl: 5000,
+    dates: {
+      range: [new Date("2022-03-01"), new Date("2022-04-30")],
+      daysAndHours: { 2: [10, 16], 3: [10, 16] },
+    },
+  },
+  {
+    id: 3,
+    screenIds: [3, 2],
+    title: "FASHION CLOTHES",
+    subtitle: "best quality and style",
+    message: [
+      "MOST TREDY FASHIONABLE CLOTHES",
+      "END OF SEASON SALE",
+      "FIND US ON FACEBOOK INSTAGRAM AND TWITTER",
+    ],
+    img: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5JKDq-H9qcPjlsgoD0jwk0icF_2o5VK13g&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3h7Srl3VH6UKcZilNaqd8CDszPz3BFm7cKA&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfoTNUAr8EblvyTYt5KUfuCJIJwHS6MWtQHw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5iDH51DsoiKniHE78gKQSNX06YQOK_dNrvQ&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV-aM7fdhAmOSMUSf2eoZp24ua0cKxsUuahg&usqp=CAU",
+    ],
+    template: "a",
+    ttl: 3000,
+    dates: {
+      range: [new Date("2022-05-01"), new Date("2022-06-15")],
+      daysAndHours: {
+        0: [8, 22],
+        1: [8, 22],
+        2: [8, 22],
+        3: [8, 22],
+        4: [8, 22],
+        5: [8, 22],
+        6: [8, 22],
+      },
+    },
+  },
+  {
+    id: 4,
+    screenIds: [1],
+    title: "TRAVEL GUIDES",
+    subtitle: "professional with years of experience",
+    message: [
+      "TRAVEL WITH US",
+      "BEST OFFERS AND DEALS",
+      "GARENTEE LOWEST PRICES",
+      "CALL US *3511",
+      "BEST ADVICE AND TRAVEL GUIDES",
+      "TRAVEL MORE SPEND LESS",
+    ],
+    img: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRKfSfz1S9uLK-i_6zwl0nZWPi2iOcuIrySQ&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTucmKObBIfH2nKabaYcjot0CgopVZaXhzyig&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMSqgtKElpRJtMg9G6MjoDIGjMq0xxBArtrQ&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8dnToWjhdzoNh7EoF9CbfkXhzNQaCFOhyg&usqp=CAU",
+    ],
+    template: "b",
+    ttl: 4000,
+    dates: {
+      range: [new Date("2022-03-29"), new Date("2022-04-15")],
+      daysAndHours: { 1: [15, 19] },
+    },
+  },
+  {
+    id: 5,
+    screenIds: [3],
+    title: "HEAD AND SHOULDERS",
+    subtitle: "voted #1 on hair products",
+    message: [
+      "HEAD AND SHOULDERS FOR ALL HAIR TYPES",
+      "WASH YOUR HAIR WITH THE BEST",
+      "NOW ON STORES",
+      "ON SALE FOR 24H",
+    ],
+    img: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6eyqUv0Ey-dplxLl7dzh36MPZdLEBFGH0mg&usqp=CAU",
+    ],
+    template: "c",
+    ttl: 5000,
+    dates: {
+      range: [new Date("2022-04-01"), new Date("2022-06-30")],
+      daysAndHours: { 1: [1, 23], 2: [1, 23], 3: [1, 23] },
+    },
+  },
+];
+
+module.exports = ads;
