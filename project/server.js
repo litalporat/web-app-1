@@ -22,7 +22,6 @@ app.get("/data", function (req, res) {
 });
 
 app.get("/a.html", function (req, res) {
-  console.log("a");
   res.sendFile(__dirname + "/a.html");
 });
 

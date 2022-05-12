@@ -1,7 +1,6 @@
 let ads = [];
 fetch("/data")
   .then((data) => {
-    console.log(data);
     return data.json();
   })
   .then((res) => {
@@ -13,10 +12,12 @@ fetch("/data")
     //returns t/f if ad in time to show
     const timeFrame = function (currDates) {
       const now = new Date();
+      window.lital = currDates;
+      window.ravid = now
       //dates check
       if (
-        currDates.range[0] <= Date.now() &&
-        currDates.range[1] >= Date.now()
+        new Date(currDates.range[0]) <= Date.now() &&
+        new Date(currDates.range[1]) >= Date.now()
       ) {
         //days of the week check
         if (
@@ -37,19 +38,31 @@ fetch("/data")
     //handle button click
     $("#btn_load_next").click(function () {
       clearTimeout(changeOnTime);
-      nextAndAppend();
+      nextAd();
     });
 
     //switch the current ad to next ad
-    const nextAd = function () {
-      do {
-        currentAd++;
-        currentAd = currentAd % ads.length;
-      } while (!timeFrame(ads[currentAd].dates));
+    const nextAd = () => {
+      if (adsToShow()) {
+        do {
+          currentAd++;
+          currentAd = currentAd % ads.length;
+        } while (!timeFrame(ads[currentAd].dates));
+        appendAd();
+      } else
+        $('#result').html("No ads to show at the moment...")
     };
 
+    const adsToShow = () => {
+      for (let i = 0; i < ads.length; i++) {
+        if (timeFrame(ads[i].dates))
+          return true
+      }
+      return false;
+    }
+
     //shows on screen
-    const appendAd = function () {
+    const appendAd = () => {
       const template = "./" + ads[currentAd].template + ".html";
 
       $("#result").load(template, function () {
@@ -75,15 +88,10 @@ fetch("/data")
       });
 
       changeOnTime = setTimeout(function () {
-        //console.log("in time out");
-        nextAndAppend();
+        nextAd();
       }, ads[currentAd].ttl);
     };
 
-    const nextAndAppend = function () {
-      nextAd();
-      appendAd();
-    };
     //the first ad to show
-    $(document).ready(nextAndAppend);
+    $(document).ready(nextAd);
   });
